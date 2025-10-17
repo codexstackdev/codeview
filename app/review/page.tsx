@@ -25,7 +25,6 @@ export default function Home() {
       setLoading(false);
     }
   };
-  console.log(model);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 via-white to-purple-100 flex items-center justify-center p-6">
@@ -53,10 +52,13 @@ export default function Home() {
               placeholder="Paste your code here..."
             />
           </div>
+          <label htmlFor="select" className="text-gray-800 my-2 font-sans">Pick a CodeView Professor</label>
             <select value={model} onChange={(value) => setModel(value.target.value)} className="my-2 border border-gray-500 p-2 rounded-md text-black">
               <option value="sitti">Grumpy sitty</option>
               <option value="shie">Newbie shie</option>
               <option value="oel">Professor oel</option>
+              <option value="nirt">Smarty Dirt</option>
+              <option value="zyrill">Just Zyrill</option>
             </select>
           <button
             type="submit"
