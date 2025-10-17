@@ -5,6 +5,7 @@ import kenshie from "../images/kenshie.png";
 export default function Home() {
   const [code, setCode] = useState("");
   const [message, setMessage] = useState("");
+  const [model, setModel] = useState<HTMLSelectElement | any>("sitti");
   const [loading, setLoading] = useState(false);
 
   const handleFetch = async (e: FormEvent) => {
@@ -13,7 +14,7 @@ export default function Home() {
     const res = await fetch("/api/content", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ code }),
+      body: JSON.stringify({ code, model }),
     });
     const data = await res.json();
     if (data.success) {
@@ -24,6 +25,7 @@ export default function Home() {
       setLoading(false);
     }
   };
+  console.log(model);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 via-white to-purple-100 flex items-center justify-center p-6">
@@ -51,7 +53,11 @@ export default function Home() {
               placeholder="Paste your code here..."
             />
           </div>
-
+            <select value={model} onChange={(value) => setModel(value.target.value)} className="my-2 border border-gray-500 p-2 rounded-md text-black">
+              <option value="sitti">Grumpy sitty</option>
+              <option value="shie">Newbie shie</option>
+              <option value="oel">Professor oel</option>
+            </select>
           <button
             type="submit"
             disabled={loading}
